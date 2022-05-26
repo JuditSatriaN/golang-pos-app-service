@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/golang_pos_app_service/handler/productinfo"
+	"github.com/golang_pos_app_service/handler/services/productinfo"
 	"github.com/gorilla/mux"
 )
 
@@ -13,7 +13,8 @@ func handleRequests() {
 	// creates a new instance of a mux router
 	myRouter := mux.NewRouter().StrictSlash(true)
 
-	// products handler
+	// Service handler
+	// Service - products
 	myRouter.HandleFunc("/products", productinfo.GetProducts)
 
 	log.Fatal(http.ListenAndServe(":10000", myRouter))
