@@ -3,13 +3,17 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/golang_pos_app_service/handler/web/login"
 	"log"
 	"net/http"
 
-	"github.com/golang_pos_app_service/handler/services/productinfo"
-	"github.com/golang_pos_app_service/handler/web/home"
 	"github.com/gorilla/mux"
+
+	personaliaSvc "github.com/golang_pos_app_service/handler/services/personalia"
+	productinfoSvc "github.com/golang_pos_app_service/handler/services/productinfo"
+
+	homeWeb "github.com/golang_pos_app_service/handler/web/home"
+	loginWeb "github.com/golang_pos_app_service/handler/web/login"
+	personaliaWeb "github.com/golang_pos_app_service/handler/web/personalia"
 )
 
 func handleRequests() {
@@ -22,11 +26,14 @@ func handleRequests() {
 	flag.StringVar(&static, "static", "./static", "")
 	flag.Parse()
 	myRouter.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(static))))
-	myRouter.HandleFunc("/", login.WebLoginHandler)
-	myRouter.HandleFunc("/home", home.WebHomeHandler)
+	myRouter.HandleFunc("/", loginWeb.WebLoginHandler)
+	myRouter.HandleFunc("/home", homeWeb.WebHomeHandler)
+	myRouter.HandleFunc("/user", personaliaWeb.WebUserHandler)
+
 	// Service handler
 	// Service - products
-	myRouter.HandleFunc("/products", productinfo.GetProducts)
+	myRouter.HandleFunc("/svc/products", productinfoSvc.GetProducts)
+	myRouter.HandleFunc("/svc/users", personaliaSvc.ServicesGetUser)
 
 	log.Fatal(http.ListenAndServe(":10000", myRouter))
 }

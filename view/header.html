@@ -14,11 +14,16 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ .TemplateURL }}/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{{ .TemplateURL }}/css/customtable.css" rel="stylesheet">
+    <link href="{{ .TemplateURL }}/css/customloading.css" rel="stylesheet">
+    <link href="{{ .TemplateURL }}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
 
 <body id="page-top">
-
+{{ template "loading.html" . }}
 <!-- Page Wrapper -->
 <div id="wrapper">
     {{ template "sidebar.html" . }}
