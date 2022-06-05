@@ -32,11 +32,11 @@ $(function() {
 
         $.ajax({
             type: "POST",
+            async: false,
             contentType: 'application/json',
             url: baseURL + "svc/user/upsert",
             data: JSON.stringify(jsonObject),
         }).then(function (res) {
-            alert("Data berhasil disimpan");
             col1Obj.html(res["user_id"]);
             col2Obj.html(res["user_name"]);
             col3Obj.html(res["full_name"]);
@@ -49,8 +49,9 @@ $(function() {
             }
             col5Obj.html('<div class="form-check" style="text-align: center;">' + isAdmin + '</div>');
             rowObj.find(".add, .edit").toggle();
+            alertify.success("Data berhasil disimpan");
         }).catch(function (a) {
-            alert("Error : " + a.responseText);
+            alertify.error("Error : " + a.responseText);
         });
 
     });
