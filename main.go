@@ -29,6 +29,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/", loginWeb.WebLoginHandler)
 	myRouter.HandleFunc("/home", homeWeb.WebHomeHandler)
 	myRouter.HandleFunc("/user", personaliaWeb.WebUserHandler)
+	myRouter.HandleFunc("/member", personaliaWeb.WebMemberHandler)
 
 	// Service handler
 	// Service - products

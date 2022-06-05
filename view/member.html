@@ -1,0 +1,38 @@
+{{ template "header.html" . }}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Halaman Member</h1>
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="card shadow mb-5">
+        <div class="card-header py-3">
+            <a class="btn btn-primary btn-icon-split add-new">
+                <span class="icon text-white-50"><i class="fas fa-plus"></i></span>
+                <span class="text">Tambah Data</span>
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable">
+                    <thead>
+                    <tr>
+                        <th style="width: 15%">ID</th>
+                        <th style="width: 25%">Name</th>
+                        <th style="width: 10%;text-align: center;">Action</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.container-fluid -->
+
+{{ template "footer.html" . }}
