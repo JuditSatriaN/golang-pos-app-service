@@ -75,7 +75,8 @@ const updateUser = `
 		user_name = :user_name, 
 		full_name = :full_name, 
 		password = :password, 
-		is_admin = :is_admin 
+		is_admin = :is_admin,
+		update_time = NOW()
 	WHERE user_id = :user_id
 `
 

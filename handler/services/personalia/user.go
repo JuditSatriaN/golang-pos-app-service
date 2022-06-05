@@ -15,7 +15,7 @@ import (
 	personaliaentity "github.com/golang_pos_app_service/entity/personalia"
 )
 
-func ServicesGetUser(w http.ResponseWriter, r *http.Request) {
+func ServicesGetUsers(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -206,6 +206,7 @@ func ServicesUpsertUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
 	_, err = w.Write(usersBytes)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

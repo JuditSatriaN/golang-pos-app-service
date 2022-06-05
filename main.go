@@ -36,11 +36,13 @@ func handleRequests() {
 	myRouter.HandleFunc("/svc/products", productinfoSvc.GetProducts)
 
 	// Service - users
-	myRouter.HandleFunc("/svc/users", personaliaSvc.ServicesGetUser)
+	myRouter.HandleFunc("/svc/users", personaliaSvc.ServicesGetUsers)
 	myRouter.HandleFunc("/svc/user/insert", personaliaSvc.ServicesInsertUser)
 	myRouter.HandleFunc("/svc/user/update", personaliaSvc.ServicesUpdateUser)
 	myRouter.HandleFunc("/svc/user/delete", personaliaSvc.ServicesDeleteUser)
 	myRouter.HandleFunc("/svc/user/upsert", personaliaSvc.ServicesUpsertUser)
+	// Service - members
+	myRouter.HandleFunc("/svc/members", personaliaSvc.ServicesGetMembers)
 
 	log.Fatal(http.ListenAndServe(":10000", myRouter))
 }
