@@ -12,7 +12,7 @@ $(function() {
             '<td><input type="text" class="form-control" name="user_id" id="user_id"></td>' +
             '<td><input type="text" class="form-control" name="user_name" id="user_name"></td>' +
             '<td><input type="text" class="form-control" name="full_name" id="full_name"></td>' +
-            '<td><input type="text" class="form-control" name="password" id="password"></td>' +
+            '<td><input type="password" class="form-control" name="password" id="password"></td>' +
             '<td><div class="form-check" style="text-align: center;"><input class="form-check-input" type="checkbox" value=""></div></td>' +
             '<td style="text-align: center;">' + actionHtml + '</td>' +
             '</tr>';

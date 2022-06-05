@@ -1,6 +1,7 @@
 $(function() {
     // Edit row on edit button click
-    $(document).on("click", ".edit", function(){
+    $(document).on("click", ".edit", function(e){
+        e.preventDefault();
         let parentObj = $(this).parents("tr")
 
         let row1Obj = parentObj.find("td:nth-child(1)")

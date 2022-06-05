@@ -32,7 +32,11 @@ func ServicesGetUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write(usersBytes)
+	_, err = w.Write(usersBytes)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 func ServicesInsertUser(w http.ResponseWriter, r *http.Request) {
@@ -62,8 +66,6 @@ func ServicesInsertUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
-	w.Header().Set("Content-Type", "application/json")
 
 	_, err = fmt.Fprintf(w, "Data user berhasil disimpan")
 	if err != nil {
@@ -111,8 +113,6 @@ func ServicesUpdateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-
 	_, err = fmt.Fprintf(w, "Data user berhasil diubah")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -152,8 +152,6 @@ func ServicesDeleteUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-
 	_, err = fmt.Fprintf(w, "Data user berhasil dihapus")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -161,7 +159,7 @@ func ServicesDeleteUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func ServicesUpsertUser(w http.ResponseWriter, r *http.Request) {
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
 	var user personaliaentity.User
@@ -179,6 +177,10 @@ func ServicesUpsertUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	userDB, found, err := personaliactrl.GetUserByUserID(ctx, user.UserID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	// replace to existing data
 	if user.Password == "" {
@@ -199,9 +201,15 @@ func ServicesUpsertUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-
-	_, err = fmt.Fprintf(w, "Data user berhasil disimpan")
+	usersBytes, err := json.Marshal(user)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
+	_, err = w.Write(usersBytes)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	return
 }
