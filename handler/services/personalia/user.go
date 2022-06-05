@@ -40,7 +40,7 @@ func ServicesGetUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 func ServicesInsertUser(w http.ResponseWriter, r *http.Request) {
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	var user personaliaentity.User
@@ -74,7 +74,7 @@ func ServicesInsertUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func ServicesUpdateUser(w http.ResponseWriter, r *http.Request) {
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	var user personaliaentity.User
@@ -159,7 +159,7 @@ func ServicesDeleteUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func ServicesUpsertUser(w http.ResponseWriter, r *http.Request) {
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	var user personaliaentity.User
@@ -183,7 +183,7 @@ func ServicesUpsertUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// replace to existing data
-	if user.Password == "" {
+	if user.Password == "" || user.Password == userDB.Password {
 		user.Password = userDB.Password
 	} else {
 		user.Password, _ = pkg.HashPassword(user.Password)
@@ -201,13 +201,13 @@ func ServicesUpsertUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	usersBytes, err := json.Marshal(user)
+	userBytes, err := json.Marshal(user)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	_, err = w.Write(usersBytes)
+	_, err = w.Write(userBytes)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

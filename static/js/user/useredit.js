@@ -2,28 +2,28 @@ $(function() {
     // Edit row on edit button click
     $(document).on("click", ".edit", function(e){
         e.preventDefault();
-        let parentObj = $(this).parents("tr")
+        let rowObj = $(this).parents("tr")
 
-        let row1Obj = parentObj.find("td:nth-child(1)")
-        row1Obj.html('<input id="user_id" name="user_id" type="text" class="form-control" value="' + row1Obj.text() + '">')
+        let col1Obj = rowObj.find("td:nth-child(1)")
+        col1Obj.html('<input id="user_id" name="user_id" type="text" class="form-control" value="' + col1Obj.text() + '">')
 
-        let row2Obj = parentObj.find("td:nth-child(2)")
-        row2Obj.html('<input id="user_name" name="user_name" type="text" class="form-control" value="' + row2Obj.text() + '">')
+        let col2Obj = rowObj.find("td:nth-child(2)")
+        col2Obj.html('<input id="user_name" name="user_name" type="text" class="form-control" value="' + col2Obj.text() + '">')
 
-        let row3Obj = parentObj.find("td:nth-child(3)")
-        row3Obj.html('<input id="full_name" name="full_name" type="text" class="form-control" value="' + row3Obj.text() + '">')
+        let col3Obj = rowObj.find("td:nth-child(3)")
+        col3Obj.html('<input id="full_name" name="full_name" type="text" class="form-control" value="' + col3Obj.text() + '">')
 
-        let row4Obj = parentObj.find("td:nth-child(4)")
-        row4Obj.html('<input id="password" name="password" type="password" class="form-control" value="' + row4Obj.text() + '">')
+        let col4Obj = rowObj.find("td:nth-child(4)")
+        col4Obj.html('<input id="password" name="password" type="password" class="form-control" value="' + col4Obj.text() + '">')
 
-        let row5Obj = parentObj.find("td:nth-child(5)")
-        const checkBoxObj = row5Obj.children().children();
+        let col5Obj = rowObj.find("td:nth-child(5)")
+        const checkBoxObj = col5Obj.children().children();
         if (checkBoxObj.is(':checked')){
-            row5Obj.html('<div class="form-check" style="text-align: center;">' +
+            col5Obj.html('<div class="form-check" style="text-align: center;">' +
                 '<input id="is_admin" name="is_admin" type="checkbox" checked="checked" class="form-check-input" value="' + checkBoxObj.val() + '">' +
                 '</div>')
         }else{
-            row5Obj.html('<div class="form-check" style="text-align: center;">' +
+            col5Obj.html('<div class="form-check" style="text-align: center;">' +
                 '<input id="is_admin" name="is_admin" type="checkbox" class="form-check-input" value="' + checkBoxObj.val() + '">' +
                 '</div>')
         }

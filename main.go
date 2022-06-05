@@ -43,6 +43,10 @@ func handleRequests() {
 	myRouter.HandleFunc("/svc/user/upsert", personaliaSvc.ServicesUpsertUser)
 	// Service - members
 	myRouter.HandleFunc("/svc/members", personaliaSvc.ServicesGetMembers)
+	myRouter.HandleFunc("/svc/member/insert", personaliaSvc.ServicesInsertMember)
+	myRouter.HandleFunc("/svc/member/update", personaliaSvc.ServicesUpdateMember)
+	myRouter.HandleFunc("/svc/member/delete", personaliaSvc.ServicesDeleteMember)
+	myRouter.HandleFunc("/svc/member/upsert", personaliaSvc.ServicesUpsertMember)
 
 	log.Fatal(http.ListenAndServe(":10000", myRouter))
 }

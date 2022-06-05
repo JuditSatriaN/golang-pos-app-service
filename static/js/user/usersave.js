@@ -7,20 +7,20 @@ $(function() {
         let rowObj = $(this).parents("tr")
 
         let col1Obj = rowObj.find("td:nth-child(1)")
-        jsonObject["user_id"] = col1Obj.children().val()
+        jsonObject["user_id"] = col1Obj.children().val().trim()
         if (jsonObject["user_id"] === ""){
             alert("User ID tidak boleh kosong");
             return
         }
 
         let col2Obj = rowObj.find("td:nth-child(2)")
-        jsonObject["user_name"] = col2Obj.children().val()
+        jsonObject["user_name"] = col2Obj.children().val().trim()
 
         let col3Obj = rowObj.find("td:nth-child(3)")
-        jsonObject["full_name"] = col3Obj.children().val()
+        jsonObject["full_name"] = col3Obj.children().val().trim()
 
         let col4Obj = rowObj.find("td:nth-child(4)")
-        jsonObject["password"] = col4Obj.children().val()
+        jsonObject["password"] = col4Obj.children().val().trim()
         if (jsonObject["password"] === ""){
             alert("Password tidak boleh kosong");
             return
