@@ -35,7 +35,9 @@
         </div>
     </div>
 </div>
+
 <!-- /.container-fluid -->
+
 {{ template "footer.html" . }}
 <script>
     let golangData = {{.}}
@@ -62,15 +64,15 @@
 
             // isAdmin html template
             let isAdmin = '<input class="form-check-input" type="checkbox" onclick="return false">'
-            if (item["IsAdmin"]){
+            if (item["is_admin"]){
                 isAdmin = '<input class="form-check-input" type="checkbox" checked onclick="return false">'
             }
 
             $("#dataTable").DataTable().row.add([
-                item["UserID"],
-                item["UserName"],
-                item["FullName"],
-                item["Password"],
+                item["user_id"],
+                item["user_name"],
+                item["full_name"],
+                item["password"],
                 '<div class="form-check" style="text-align: center;">' + isAdmin + '</div>',
                 actionHtml,
             ]).draw();
